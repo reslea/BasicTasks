@@ -61,6 +61,7 @@ namespace Interfaces
         {
             Node<T> currentHead = Head;
             Node<T> newHead = new Node<T>(item, currentHead);
+            Head = newHead;
         }
 
         public void Clear()
@@ -118,6 +119,17 @@ namespace Interfaces
             }
 
             return false;
+        }
+
+        public LinkedList<T> Reverse()
+        {
+            var result = new LinkedList<T>(this);
+
+            foreach(var item in this)
+            {
+                result.Add(item);
+            }
+            return result;
         }
     }
 
