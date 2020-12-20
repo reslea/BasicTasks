@@ -14,18 +14,6 @@ namespace Interfaces
             ToFrom
         }
 
-        //delegate bool IntFilter(int toFilter);
-
-        delegate void Void();
-        delegate void Void<T1>(T1 param);
-        delegate void Void<T1, T2>(T1 param1, T2 param2);
-        delegate void Void<T1, T2, T3>(T1 param1, T2 param2, T3 param3);
-
-        delegate TResult Function<TResult>();
-        delegate TResult Function<TResult, T1>(T1 param1);
-        delegate TResult Function<TResult, T1, T2>(T1 param1, T2 param2);
-        delegate TResult Function<TResult, T1, T2, T3>(T1 param1, T2 param2, T3 param3);
-
         static void Main(string[] args)
         {
             var selectedOption = GetCompareOption();
@@ -51,9 +39,9 @@ namespace Interfaces
             return selectedOption;
         }
 
-        private static Function<bool, int> GetSelectedFilter(CompareType selectedOption)
+        private static Func<int, bool> GetSelectedFilter(CompareType selectedOption)
         {
-            Function<bool, int> selectedFilter = null;
+            Func<int, bool> selectedFilter = null;
             switch (selectedOption)
             {
                 case CompareType.ByEven:
@@ -80,26 +68,13 @@ namespace Interfaces
             return number % 2 == 0;
         }
 
-        static IEnumerable<int> Filter(IEnumerable<int> toFilter, Function<bool, int> intFilter)
+        static IEnumerable<T> Filter<T>(IEnumerable<T> toFilter, Func<T, bool> filter)
         {
-            if (intFilter == null) throw new ArgumentNullException("int filter is not declared");
-            var list = new LinkedList<int>();
+            if (filter == null) throw new ArgumentNullException("int filter is not declared");
+            var list = new LinkedList<T>();
             foreach (var item in toFilter)
             {
-                if(intFilter(item))
-                {
-                    list.Add(item);
-                }
-            }
-            return list;
-        }
-
-        static IEnumerable<string> Filter(IEnumerable<string> toFilter, string toSearch)
-        {
-            var list = new LinkedList<string>();
-            foreach (var item in toFilter)
-            {
-                if (item.Contains(toSearch))
+                if(filter(item))
                 {
                     list.Add(item);
                 }
