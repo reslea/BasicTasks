@@ -22,7 +22,13 @@ namespace Interfaces
             var numbers = new[] { 1, 2, 2, 3, 5 };
 
             var list = new LinkedList<int>(numbers);
+            int itemsCount = list?.Count ?? 0;
             var filtered = Filter(list, selectedFilter);
+
+            for (int i = 0; i < itemsCount; i++)
+            {
+                Console.WriteLine(list?.ElementAt(i));
+            }
 
             foreach (var item in filtered)
             {
@@ -38,7 +44,7 @@ namespace Interfaces
             var selectedOption = (CompareType)int.Parse(Console.ReadLine());
             return selectedOption;
         }
-
+        
         private static Func<int, bool> GetSelectedFilter(CompareType selectedOption)
         {
             Func<int, bool> selectedFilter = null;
