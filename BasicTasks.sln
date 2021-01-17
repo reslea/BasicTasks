@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExceptionsBasics", "Excepti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extentions", "Extentions\Extentions.csproj", "{E5D53E53-1CD7-4FBD-B8A3-CCD766327858}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization", "..\Serialization\Serialization\Serialization.csproj", "{462149BC-FC91-452E-9A75-54166D7BC299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization", "Serialization\Serialization.csproj", "{75802ECA-09BF-4A70-A338-9F5A9C749B04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +43,10 @@ Global
 		{E5D53E53-1CD7-4FBD-B8A3-CCD766327858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5D53E53-1CD7-4FBD-B8A3-CCD766327858}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5D53E53-1CD7-4FBD-B8A3-CCD766327858}.Release|Any CPU.Build.0 = Release|Any CPU
-		{462149BC-FC91-452E-9A75-54166D7BC299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{462149BC-FC91-452E-9A75-54166D7BC299}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{462149BC-FC91-452E-9A75-54166D7BC299}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{462149BC-FC91-452E-9A75-54166D7BC299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75802ECA-09BF-4A70-A338-9F5A9C749B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75802ECA-09BF-4A70-A338-9F5A9C749B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75802ECA-09BF-4A70-A338-9F5A9C749B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75802ECA-09BF-4A70-A338-9F5A9C749B04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
