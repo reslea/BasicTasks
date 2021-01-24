@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extentions", "Extentions\Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization", "Serialization\Serialization.csproj", "{75802ECA-09BF-4A70-A338-9F5A9C749B04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem", "FileSystem\FileSystem.csproj", "{4C342B83-E1CA-49EF-8729-FD401BFF1D53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{75802ECA-09BF-4A70-A338-9F5A9C749B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75802ECA-09BF-4A70-A338-9F5A9C749B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75802ECA-09BF-4A70-A338-9F5A9C749B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C342B83-E1CA-49EF-8729-FD401BFF1D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C342B83-E1CA-49EF-8729-FD401BFF1D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C342B83-E1CA-49EF-8729-FD401BFF1D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C342B83-E1CA-49EF-8729-FD401BFF1D53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
