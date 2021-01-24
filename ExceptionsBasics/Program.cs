@@ -6,7 +6,10 @@ namespace ExceptionsBasics
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(GetNumber());
+            var coolClass = new CoolClass();
+            var otherClass = new OtherClass();
+            coolClass.SomeMethod(otherClass);
+            Console.WriteLine("main");
         }
 
         static int? GetNumber()
@@ -33,6 +36,32 @@ namespace ExceptionsBasics
             {
                 Console.WriteLine("inside finally");
             }
+        }
+    }
+
+    class CoolClass
+    {
+        public void SomeMethod(OtherClass otherClass)
+        {
+            try
+            {
+                otherClass.SomeMethod(1, 1);
+                Console.WriteLine("outer class");
+            }
+            catch(ArgumentException ex)
+            {
+                throw new ExecutionEngineException("inner class failure", ex);
+            }
+        }
+    }
+
+     class OtherClass
+    {
+        public void SomeMethod(int x, int y)
+        {
+            var someNumber = 15;
+            Console.WriteLine("inner class");
+            throw new ArgumentException($"Some process is failed with x: {x} y: {y}");
         }
     }
 
