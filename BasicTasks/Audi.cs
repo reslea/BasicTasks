@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BasicTasks
 {
-    class Audi
+    class Audi : Car
     {
     }
 }

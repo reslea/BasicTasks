@@ -36,7 +36,14 @@ namespace FileSystem
             //}
             #endregion
 
-            using var fs = new FileStream("myFile0.csv", FileMode.Open);
+            var filePath = "myFile0.csv";
+            var isExists = File.Exists(filePath);
+
+            if (!isExists)
+            {
+                Console.WriteLine("no such file found");
+            }
+            using var fs = new FileStream(filePath, FileMode.Open);
             using var sr = new StreamReader(fs, detectEncodingFromByteOrderMarks: true);
             
             var header = sr.ReadLine();
