@@ -31,7 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsOverview", "EventsOve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos", "Todos\Todos.csproj", "{933EDA0D-3C07-4F52-B027-05076CD0B8B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncronousThreads", "AsyncronousThreads\AsyncronousThreads.csproj", "{EA2082CE-2D80-4FFB-A47A-FFE0EB0AF462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncronousThreads", "AsyncronousThreads\AsyncronousThreads.csproj", "{EA2082CE-2D80-4FFB-A47A-FFE0EB0AF462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncForms", "AsyncForms\AsyncForms.csproj", "{274ED877-FEC4-45DF-8C96-9C310C97A404}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{EA2082CE-2D80-4FFB-A47A-FFE0EB0AF462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA2082CE-2D80-4FFB-A47A-FFE0EB0AF462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA2082CE-2D80-4FFB-A47A-FFE0EB0AF462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274ED877-FEC4-45DF-8C96-9C310C97A404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274ED877-FEC4-45DF-8C96-9C310C97A404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274ED877-FEC4-45DF-8C96-9C310C97A404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274ED877-FEC4-45DF-8C96-9C310C97A404}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +115,7 @@ Global
 		{C0C9858F-275E-4A6E-AC0E-7718EC19CCE8} = {564DDA64-C062-473C-B125-170D344FDC94}
 		{933EDA0D-3C07-4F52-B027-05076CD0B8B9} = {564DDA64-C062-473C-B125-170D344FDC94}
 		{EA2082CE-2D80-4FFB-A47A-FFE0EB0AF462} = {D42D7A0B-CE08-4E5D-8DBC-19B5F8E5586F}
+		{274ED877-FEC4-45DF-8C96-9C310C97A404} = {564DDA64-C062-473C-B125-170D344FDC94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB84DAC9-6824-436B-B35A-26A26EE8592E}

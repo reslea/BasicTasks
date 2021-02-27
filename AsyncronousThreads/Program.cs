@@ -9,16 +9,51 @@ namespace AsyncronousThreads
     {
         static void Main(string[] args)
         {
-            var task = GetTask();
+            // "положить" счетчик консоли в задачу
+            // для возможности дальнейшего запуска на пуле потоков (ThreadPool)
+            var consoleTask = new Task(ConsoleCounter);
 
-            task.Start();
-            Console.ReadKey();
+            // запустить задачу к выполнению
+            consoleTask.Start();
 
-            task.Start();
-            Console.ReadKey();
+            // сформировать новую задачу
+            // она будет выполнена после завершения предыдущей
+            // это сделает автоматически планировщик потоков на пуле потоков
+            var continueTask = consoleTask.ContinueWith(t =>
+            // код продолжения
+            {
+                Console.WriteLine("Task is completed");
+            });
+
+            // назначить ожидание задачи.
+            // Поскольку задача продолжения выполнится гарантированно после consoleTask
+            // то здесь мы ожидаем выполнения обоих задач
+            continueTask.Wait();
+            // здесь обе задачи выполнены, можно выводить сообщение
+            // и закрывать программу
+            Console.WriteLine("All tasks are completed");
         }
 
-        private static Task GetTask()
+        private static void ConsoleSpaces()
+        {
+            Console.WriteLine($"main thread: {Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine("doing something useful");
+            for (int i = 0; i < 10 * 100; i++)
+            {
+                Console.Write(" ");
+            }
+        }
+
+        private static Task GetTaskWrapped()
+        {
+            var task = GetConsoleTask();
+
+            task.Start();
+                
+            return task;
+        }
+
+        private static Task GetConsoleTask()
         {
             return new Task(ConsoleCounter);
         }
@@ -40,18 +75,17 @@ namespace AsyncronousThreads
 
         private static void ConsoleCounter()
         {
-            for (int i = 0; i < 1 * 1000; i++)
-            {
-                Console.WriteLine($"threadId: {Thread.CurrentThread.ManagedThreadId}, i: {i}");
-            }
+            ConsoleCounter(null);
         }
 
         private static void ConsoleCounter(object param)
         {
-            for (int i = 0; i < 1 * 1000; i++)
+            for (int i = 0; i < 1 * 10; i++)
             {
                 Console.WriteLine($"threadId: {Thread.CurrentThread.ManagedThreadId}, i: {i}");
             }
+            Console.WriteLine($"threadId: {Thread.CurrentThread.ManagedThreadId}");
+            //throw new ApplicationException("error!");
         }
     }
 }
