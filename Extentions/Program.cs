@@ -1,34 +1,65 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using System.Net.Sockets;
 
 namespace Extentions
 {
+    public class NumbersGenerator : IEnumerable<int>
+    {
+        public IEnumerator<int> GetEnumerator()
+        {
+            return new GeneratedNumbersEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public class GeneratedNumbersEnumerator : IEnumerator<int>
+        {
+            private int _value = 0;
+
+            public int Current { get; private set; }
+
+            object? IEnumerator.Current => Current;
+
+            public bool MoveNext()
+            {
+                Current = _value++;
+                return true;
+            }
+
+            public void Reset()
+            {
+                _value = 0;
+            }
+
+            public void Dispose() { }
+        }
+    }
+
     class Program
     {
         private static Random random = new Random();
 
         static void Main(string[] args)
         {
-            var numbers = GetEvenNumbers()
-                .Take(100);
-            
-            var firstNumber = numbers
-                .FirstOrDefault(n => n < 0);
-
-            foreach (var number in numbers)
+            foreach (var number in new NumbersGenerator())
             {
                 Console.WriteLine(number);
             }
         }
 
-        public static IEnumerable<int> GetEvenNumbers()
+        public static IEnumerable<int> GetNumbers()
         {
-            var i = 0;
+            var _value = 0;
+
             while (true)
             {
-                yield return i++;
+                yield return _value++;
             }
         }
 

@@ -29,48 +29,70 @@ namespace Todos
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TodosListbox = new System.Windows.Forms.ListBox();
+            this.TodoNameTextbox = new System.Windows.Forms.TextBox();
+            this.AddTodoButton = new System.Windows.Forms.Button();
+            this.RemoveTodo = new System.Windows.Forms.Button();
+            this.EditTodo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // TodosListbox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Items.AddRange(new object[] {
-            "Купить хлеб",
-            "Купить молоко",
-            "Залить домашку"});
-            this.listBox1.Location = new System.Drawing.Point(186, 87);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(252, 212);
-            this.listBox1.TabIndex = 0;
+            this.TodosListbox.FormattingEnabled = true;
+            this.TodosListbox.ItemHeight = 16;
+            this.TodosListbox.Location = new System.Drawing.Point(186, 87);
+            this.TodosListbox.Name = "TodosListbox";
+            this.TodosListbox.Size = new System.Drawing.Size(252, 212);
+            this.TodosListbox.TabIndex = 0;
+            this.TodosListbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TodosListbox_KeyDown);
             // 
-            // textBox1
+            // TodoNameTextbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(186, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(162, 22);
-            this.textBox1.TabIndex = 1;
+            this.TodoNameTextbox.Location = new System.Drawing.Point(186, 59);
+            this.TodoNameTextbox.Name = "TodoNameTextbox";
+            this.TodoNameTextbox.Size = new System.Drawing.Size(162, 22);
+            this.TodoNameTextbox.TabIndex = 1;
             // 
-            // button1
+            // AddTodoButton
             // 
-            this.button1.Location = new System.Drawing.Point(354, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AddTodoButton.Location = new System.Drawing.Point(354, 58);
+            this.AddTodoButton.Name = "AddTodoButton";
+            this.AddTodoButton.Size = new System.Drawing.Size(84, 23);
+            this.AddTodoButton.TabIndex = 2;
+            this.AddTodoButton.Text = "Добавить";
+            this.AddTodoButton.UseVisualStyleBackColor = true;
+            this.AddTodoButton.Click += new System.EventHandler(this.AddTodoButton_Click);
+            // 
+            // RemoveTodo
+            // 
+            this.RemoveTodo.Location = new System.Drawing.Point(466, 116);
+            this.RemoveTodo.Name = "RemoveTodo";
+            this.RemoveTodo.Size = new System.Drawing.Size(67, 23);
+            this.RemoveTodo.TabIndex = 3;
+            this.RemoveTodo.Text = "Delete";
+            this.RemoveTodo.UseVisualStyleBackColor = true;
+            this.RemoveTodo.Click += new System.EventHandler(this.RemoveItem_Click);
+            // 
+            // EditTodo
+            // 
+            this.EditTodo.Location = new System.Drawing.Point(466, 145);
+            this.EditTodo.Name = "EditTodo";
+            this.EditTodo.Size = new System.Drawing.Size(67, 23);
+            this.EditTodo.TabIndex = 4;
+            this.EditTodo.Text = "Edit";
+            this.EditTodo.UseVisualStyleBackColor = true;
+            this.EditTodo.Click += new System.EventHandler(this.EditTodoButton_Click);
             // 
             // MyTodo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(688, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.EditTodo);
+            this.Controls.Add(this.RemoveTodo);
+            this.Controls.Add(this.AddTodoButton);
+            this.Controls.Add(this.TodoNameTextbox);
+            this.Controls.Add(this.TodosListbox);
             this.Name = "MyTodo";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -80,9 +102,11 @@ namespace Todos
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox TodosListbox;
+        private System.Windows.Forms.TextBox TodoNameTextbox;
+        private System.Windows.Forms.Button AddTodoButton;
+        private System.Windows.Forms.Button RemoveTodo;
+        private System.Windows.Forms.Button EditTodo;
     }
 }
 

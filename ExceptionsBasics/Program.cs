@@ -2,7 +2,7 @@
 
 namespace ExceptionsBasics
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -12,7 +12,7 @@ namespace ExceptionsBasics
             Console.WriteLine("main");
         }
 
-        static int? GetNumber()
+        public static int? GetNumber()
         {
             try
             {
