@@ -31,6 +31,8 @@ namespace AsyncForms
         {
             this.RunTaskButton = new System.Windows.Forms.Button();
             this.TaskResultLabel = new System.Windows.Forms.Label();
+            this.ReadFileButton = new System.Windows.Forms.Button();
+            this.FileTextLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // RunTaskButton
@@ -51,11 +53,31 @@ namespace AsyncForms
             this.TaskResultLabel.Size = new System.Drawing.Size(0, 17);
             this.TaskResultLabel.TabIndex = 1;
             // 
+            // ReadFileButton
+            // 
+            this.ReadFileButton.Location = new System.Drawing.Point(433, 78);
+            this.ReadFileButton.Name = "ReadFileButton";
+            this.ReadFileButton.Size = new System.Drawing.Size(117, 23);
+            this.ReadFileButton.TabIndex = 2;
+            this.ReadFileButton.Text = "Read File";
+            this.ReadFileButton.UseVisualStyleBackColor = true;
+            this.ReadFileButton.Click += new System.EventHandler(this.ReadFileButton_Click);
+            // 
+            // FileOutputLabel
+            // 
+            this.FileTextLabel.AutoSize = true;
+            this.FileTextLabel.Location = new System.Drawing.Point(433, 130);
+            this.FileTextLabel.Name = "FileTextLabel";
+            this.FileTextLabel.Size = new System.Drawing.Size(0, 17);
+            this.FileTextLabel.TabIndex = 3;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.FileTextLabel);
+            this.Controls.Add(this.ReadFileButton);
             this.Controls.Add(this.TaskResultLabel);
             this.Controls.Add(this.RunTaskButton);
             this.Name = "Main";
@@ -69,6 +91,8 @@ namespace AsyncForms
 
         private System.Windows.Forms.Button RunTaskButton;
         private System.Windows.Forms.Label TaskResultLabel;
+        private System.Windows.Forms.Button ReadFileButton;
+        private System.Windows.Forms.Label FileTextLabel;
     }
 }
 
