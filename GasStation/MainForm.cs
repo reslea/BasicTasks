@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -24,6 +25,17 @@ namespace GasStation
             _cafeItemInfos = GetCafeItemInfos();
             GasTypeCombobox.Items.AddRange(_gasInfos.ToArray());
             FillCafeItems();
+
+            GetCafeItemsFromConfig();
+        }
+
+        private List<CafeItemInfo> GetCafeItemsFromConfig()
+        {
+            var result = new List<CafeItemInfo>();
+
+            var items = ConfigurationManager.GetSection("cafeItemList");
+
+            return result;
         }
 
         private List<GasInfo> GetGasInfos()
@@ -44,7 +56,8 @@ namespace GasStation
                 new CafeItemInfo("Хот-дог", 4.00m),
                 new CafeItemInfo("Гамбургер", 5.40m),
                 new CafeItemInfo("Картопля фрі", 7.20m),
-                new CafeItemInfo("Кока-кола", 4.40m)
+                new CafeItemInfo("Кока-кола", 4.40m),
+                new CafeItemInfo("Капучіно", 4.40m)
             };
         }
 
