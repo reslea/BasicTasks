@@ -13,11 +13,18 @@ namespace DirectoryScanner
 {
     public partial class MainForm : Form
     {
+        private int _redrawsCount = 0;
+
         public MainForm()
         {
             InitializeComponent();
 
             OpenDirectory();
+        }
+
+        private void ShowRedrawCount()
+        {
+            RedrawCountLabel.Text = _redrawsCount++.ToString();
         }
 
         private void OpenDirectory()
@@ -31,7 +38,9 @@ namespace DirectoryScanner
                 && !string.IsNullOrWhiteSpace(path) 
                 && Directory.Exists(path))
             {
+                DirectoriesTree.BeginUpdate();
                 PopulateDirectoryInfo(path, DirectoriesTree.Nodes);
+                DirectoriesTree.EndUpdate();
             }
         }
 
@@ -43,6 +52,7 @@ namespace DirectoryScanner
             foreach (var directory in directories)
             {
                 var directoryName = directory.Replace(path, "");
+                
                 var node = treeNode.Add(directoryName);
 
                 PopulateDirectoryInfo(directory, node.Nodes);
