@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DbExample
+﻿namespace DbExample.Entities
 {
-    public class Book
+    public class Book : BaseEntity
     {
         public int Id { get; set; }
 
