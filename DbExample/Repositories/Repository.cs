@@ -10,45 +10,49 @@ namespace DbExample.Repositories
 {
     public class Repository<T> : IRepository<T>, IDisposable where T : BaseEntity, new()
     {
-        private readonly SqlConnection _connection;
-        private readonly string _tableName = $"[{typeof(T).Name}s]";
+        protected readonly SqlConnection Connection;
+        protected readonly string TableName = $"[{typeof(T).Name}s]";
 
         public Repository()
         {
             var connectionString = @"Data Source=SZHIZHKONB1\SQLEXPRESS;Initial Catalog=Library;Integrated Security=True;";
-            _connection = new SqlConnection(connectionString);
-            _connection.Open();
+            Connection = new SqlConnection(connectionString);
+            Connection.Open();
         }
 
         public IEnumerable<T> Get()
         {
             var results = new List<T>();
 
-            var commandText = $"SELECT * FROM {_tableName}";
+            var commandText = $"SELECT * FROM {TableName}";
             var command = GetCommand(commandText);
 
-            using var reader = command.ExecuteReader();
-
-            var schema = reader.GetColumnSchema();
-            while (reader.Read())
+            using (var reader = command.ExecuteReader())
             {
-                results.Add(Create(schema, reader));
-            }
 
-            return results;
+                var schema = reader.GetColumnSchema();
+                while (reader.Read())
+                {
+                    results.Add(Create(schema, reader));
+                }
+
+                return results;
+            }
         }
 
         public T Get(int id)
         {
-            var commandText = $"SELECT * FROM {_tableName} WHERE Id = @id";
+            var commandText = $"SELECT * FROM {TableName} WHERE Id = @id";
             var command = GetCommand(commandText);
             command.Parameters.AddWithValue("id", id);
 
-            using var reader = command.ExecuteReader();
-            var schema = reader.GetColumnSchema();
-            if (!reader.Read()) return null;
+            using (var reader = command.ExecuteReader())
+            {
+                var schema = reader.GetColumnSchema();
+                if (!reader.Read()) return null;
 
-            return Create(schema, reader);
+                return Create(schema, reader);
+            }
         }
 
         public void Add(T entity)
@@ -57,10 +61,10 @@ namespace DbExample.Repositories
                 .GetProperties().Where(p => p.Name != "Id");
 
             var propNames =properties.Select(p => p.Name);
-            var columnNames = string.Join(',', propNames);
-            var paramNames = string.Join(',', propNames.Select(_ => $"@{_}"));
+            var columnNames = string.Join(",", propNames);
+            var paramNames = string.Join(",", propNames.Select(_ => $"@{_}"));
             
-            var commandText = $"INSERT INTO {_tableName} ({columnNames}) VALUES ({paramNames})";
+            var commandText = $"INSERT INTO {TableName} ({columnNames}) VALUES ({paramNames})";
             var command = GetCommand(commandText);
 
             foreach (var property in properties)
@@ -80,9 +84,9 @@ namespace DbExample.Repositories
                 .Select(p => p.Name);
 
             var setPropString = propNames.Select(n => $"{n} = @{n}");
-            var setProps = string.Join(',', setPropString);
+            var setProps = string.Join(",", setPropString);
 
-            var commandText = $"UPDATE {_tableName} SET {setProps} WHERE Id = @Id";
+            var commandText = $"UPDATE {TableName} SET {setProps} WHERE Id = @Id";
             var command = GetCommand(commandText);
                         
             foreach (var property in properties)
@@ -95,7 +99,7 @@ namespace DbExample.Repositories
 
         public void Delete(int id)
         {
-            var commandText = $"DELETE FROM {_tableName} WHERE Id = @id";
+            var commandText = $"DELETE FROM {TableName} WHERE Id = @id";
             var command = GetCommand(commandText);
             command.Parameters.AddWithValue("id", id);
             command.ExecuteNonQuery();
@@ -103,14 +107,14 @@ namespace DbExample.Repositories
 
         public void Dispose()
         {
-            _connection.Dispose();
+            Connection.Dispose();
         }
-        private SqlCommand GetCommand(string command)
+        protected SqlCommand GetCommand(string command)
         {
-            return new SqlCommand(command, _connection);
+            return new SqlCommand(command, Connection);
         }
 
-        private T Create(ReadOnlyCollection<DbColumn> schema, SqlDataReader reader)
+        protected T Create(ReadOnlyCollection<DbColumn> schema, SqlDataReader reader)
         {
             var result = new T();
 

@@ -5,12 +5,12 @@ using DbExample.Entities;
 
 namespace DbExample.Repositories
 {
-    public class BooksRepository : IRepository<Book>, IDisposable
+    public class Old_BooksRepository : IRepository<Book>, IDisposable
     {
         private readonly SqlConnection _connection;
         private readonly string _tableName = $"[{nameof(Book)}s]";
 
-        public BooksRepository()
+        public Old_BooksRepository()
         {
             var connectionString = @"Data Source=SZHIZHKONB1\SQLEXPRESS;Initial Catalog=Library;Integrated Security=True;";
             _connection = new SqlConnection(connectionString);
@@ -22,17 +22,19 @@ namespace DbExample.Repositories
             var commandText = $"SELECT * FROM {_tableName}";
             var command = GetCommand(commandText);
 
-            using var booksReader = command.ExecuteReader();
-
-            while (booksReader.Read())
+            using (var booksReader = command.ExecuteReader())
             {
-                yield return new Book
+
+                while (booksReader.Read())
                 {
-                    Id = (int)booksReader[0],
-                    Author = (string)booksReader[1],
-                    Title = (string)booksReader[2],
-                    PagesCount = (int)booksReader[3]
-                };
+                    yield return new Book
+                    {
+                        Id = (int) booksReader[0],
+                        Author = (string) booksReader[1],
+                        Title = (string) booksReader[2],
+                        PagesCount = (int) booksReader[3]
+                    };
+                }
             }
         }
 
@@ -42,17 +44,19 @@ namespace DbExample.Repositories
             var command = GetCommand(commandText);
             command.Parameters.AddWithValue("id", id);
 
-            using var booksReader = command.ExecuteReader();
-
-            if (!booksReader.Read()) throw new ArgumentOutOfRangeException();
-            
-            return new Book
+            using (var booksReader = command.ExecuteReader())
             {
-                Id = (int) booksReader[0],
-                Author = (string) booksReader[1],
-                Title = (string) booksReader[2],
-                PagesCount = (int) booksReader[3]
-            };
+
+                if (!booksReader.Read()) throw new ArgumentOutOfRangeException();
+
+                return new Book
+                {
+                    Id = (int) booksReader[0],
+                    Author = (string) booksReader[1],
+                    Title = (string) booksReader[2],
+                    PagesCount = (int) booksReader[3]
+                };
+            }
         }
 
         public void Add(Book entity)
