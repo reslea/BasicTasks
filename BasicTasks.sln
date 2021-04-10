@@ -59,7 +59,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disconnected", "Disconnecte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disconnected.UI", "Disconnected.UI\Disconnected.UI.csproj", "{E24565EA-0A8A-4F1D-AD4A-27F66658FF21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation", "Validation\Validation.csproj", "{2F61627A-F674-4CD7-B793-4FE31BD38B67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validation", "Validation\Validation.csproj", "{2F61627A-F674-4CD7-B793-4FE31BD38B67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamples", "EFSamples\EFSamples.csproj", "{D2370F3B-45CB-49FF-BE23-9487015916EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +169,10 @@ Global
 		{2F61627A-F674-4CD7-B793-4FE31BD38B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F61627A-F674-4CD7-B793-4FE31BD38B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F61627A-F674-4CD7-B793-4FE31BD38B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2370F3B-45CB-49FF-BE23-9487015916EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2370F3B-45CB-49FF-BE23-9487015916EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2370F3B-45CB-49FF-BE23-9487015916EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2370F3B-45CB-49FF-BE23-9487015916EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,6 +203,7 @@ Global
 		{E7076E5E-99B4-4C3F-9743-2661ED23FD3B} = {2A4129E7-A16F-4E73-B315-C29EFDEBBC94}
 		{E24565EA-0A8A-4F1D-AD4A-27F66658FF21} = {2A4129E7-A16F-4E73-B315-C29EFDEBBC94}
 		{2F61627A-F674-4CD7-B793-4FE31BD38B67} = {D42D7A0B-CE08-4E5D-8DBC-19B5F8E5586F}
+		{D2370F3B-45CB-49FF-BE23-9487015916EC} = {2A4129E7-A16F-4E73-B315-C29EFDEBBC94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB84DAC9-6824-436B-B35A-26A26EE8592E}
