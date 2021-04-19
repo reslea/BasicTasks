@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using EFSamples.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EFSamples
+namespace EFSamples.UI
 {
     class Program
     {
         static void Main(string[] args)
         {
-
             using var context = new LibraryContext();
 
             context.Database.EnsureCreated();
             
             var visitor = context.Visitors
                 .Include(v => v.TakenBooks)
-                .OrderByDescending(v => v.Name)
+                .OrderBy(v => v.Name)
                 .FirstOrDefault();
 
             if (visitor == null)
