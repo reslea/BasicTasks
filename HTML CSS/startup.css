@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  margin: 0;
+}
+
+.upper {  
+  text-transform: uppercase;
+}
+
+.header {
+  height: 400px;
+  width: 100%;
+  background-color:brown;
+  font-size: 20px;
+  color: white;
+  /* background-image: url('header-building.jpg');
+  background-size: cover; */
+}
+
+.header a, .header button {
+  color: white;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.header-top nav {  
+  list-style-type: none;
+}
+
+.header-top nav > li {
+  display: inline-block;
+}
+
+nav a {
+  padding: 10px 5px;
+}
+
+.header-info {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto auto auto;
+  text-align: center;
+}
+
+.header-info .action {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 2px solid white;
+}
+
+.section-line-breaker {
+  width: 50px;
+  height: 2px;
+  background-color: black;
+  border: none;
+}
+
+.section-info {
+  text-align: center;
+}
+
+.services {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 50px;
+}
+
+.service {
+  min-width: 250px;
+  max-width: 33%;
+  text-align: center;
+}
+
+.service-title {
+  text-align: center;
+}
+
+.service-icon img {
+  width: 100px;
+  height: 100px;
+}

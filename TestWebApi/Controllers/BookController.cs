@@ -27,7 +27,7 @@ namespace TestWebApi.Controllers
         }
 
         [HttpPost]
-        public void AddBook(BookModel model)
+        public void AddBook([FromForm] BookModel model)
         {
             _books.Add(new Book
             {

@@ -1,0 +1,110 @@
+/* p {
+    padding-left: 2em;
+}
+h1 {
+  color: red;
+}
+#header {
+  color: orange;
+}
+
+*/
+
+h1::after,
+h2::after,
+h3::after,
+h4::after,
+h5::after,
+h6::after {
+  content: '.';
+  color: red;
+  font-weight: bold;
+}
+
+div > p {
+    font-size: 1.2em;
+}
+
+/*
+.form-input {
+  width: 5.5em;
+  display: inline-block;
+} */
+
+.parent {
+  /* display: flex; */
+  display: none;
+  flex-wrap: wrap;
+}
+
+.child {
+  width: 25%;
+  height: 200px;
+  border: 2px dotted black;
+  margin: 10px;
+
+  overflow: hidden;
+  overflow-wrap: break-word;
+
+  display: flex;
+}
+
+.child img {
+  width: 100%;
+  margin: auto;
+}
+
+.form-row {
+  margin: 0 15px;
+  
+  display: flex;
+}
+
+.form-label {
+
+}
+
+.form-input {
+
+}
+
+input {  
+  font-size: 1em;
+  border-radius: 5px;
+}
+
+form {
+  width: 450px;
+  height: 150px;
+
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+ol {
+  list-style-type: none;
+  counter-reset: num;
+  counter-reset: num2;
+}
+
+ol li::before {
+  content: counter(num) '.' counter(num2) ') ';
+  counter-increment: num;
+  counter-increment: num2;
+  color: red;
+  font-weight: bold;
+}
+
+.cat {
+  width: 500px;
+  height: 150px;
+  opacity: 0.5;
+  /* background-image: url('http://cdn.iz.ru/sites/default/files/styles/900x506/public/news-2018-09/Depositphotos_9979039_xl-2015.jpg?itok=mH_aXEQa'); */
+  /* background-size: cover; */
+}
+
+.cat img {
+  width: 100%;
+}
