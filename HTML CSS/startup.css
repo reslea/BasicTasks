@@ -1,5 +1,18 @@
-body {
+*, *::before, *::after {
   margin: 0;
+  padding: 0;
+}
+
+* {  
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: block;
 }
 
 a {
@@ -7,7 +20,15 @@ a {
 }
 
 h1 {
-  margin: 0;
+  margin: 0.5em;
+}
+
+h2 {
+  margin: 0.3em;
+}
+
+h4 {
+  margin: 0.25em;
 }
 
 .upper {  
@@ -17,14 +38,14 @@ h1 {
 .header {
   height: 400px;
   width: 100%;
-  background-color:brown;
+  /* background-color:brown; */
   font-size: 20px;
   color: white;
-  /* background-image: url('header-building.jpg');
-  background-size: cover; */
+  background-image: url('header-building.jpg');
+  background-size: cover;
 }
 
-.header a, .header button {
+.header :is(a, button) {
   color: white;
 }
 
@@ -43,7 +64,11 @@ h1 {
 }
 
 nav a {
-  padding: 10px 5px;
+  padding: 15px 10px;
+}
+
+.header-top a:hover {  
+  background-color: rgba(0, 255, 0, 0.3);
 }
 
 .header-info {
@@ -60,26 +85,36 @@ nav a {
   border: 2px solid white;
 }
 
+.container {  
+  margin: 0 2em;
+}
+
 .section-line-breaker {
   width: 50px;
   height: 2px;
-  background-color: black;
+  background-color: black;  
+  margin: 0.5em auto;
   border: none;
 }
 
 .section-info {
   text-align: center;
+  margin: 1.5em 0;
 }
 
 .services {
   display: flex;
-  justify-content: space-between;
-  margin: 0 50px;
+  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+}
+
+.services > * {
+  width: 100%;
 }
 
 .service {
-  min-width: 250px;
-  max-width: 33%;
+  /* min-width: 250px; */
+  /* width: 100%; */
   text-align: center;
 }
 
@@ -90,4 +125,27 @@ nav a {
 .service-icon img {
   width: 100px;
   height: 100px;
+}
+
+.two-columns {
+  display: flex;  
+  flex-wrap: wrap;
+  column-gap: 3em;
+}
+
+.two-columns > * {
+  width: calc(50% - 1.5em);
+}
+
+.team {
+  display: flex;
+  gap: 4em;
+}
+
+.team > * {
+  width: 100%;
+}
+
+.team-member img {
+  width: 100%;
 }
