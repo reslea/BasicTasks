@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Как кодить на HTML</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .container {
+      border: 1px solid black;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      margin: 5px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <button class="button">Add Child</button>
+  <div class="container">
+    <div class="child"></div>
+  </div>
+  <script>
+    // console.log(factorial(5));
+
+    // var x = 15;
+
+    const arr = ["1", "2", "banana"];
+    arr.push("3");
+
+    const numbers = arr
+      .map(x => parseInt(x))
+      .filter(x => !Number.isNaN(x));
+    
+    for(let i = 0; i < numbers.length; i++) {
+      console.log(numbers[i]);
+    }
+
+    function factorial(value) {
+      return value < 2 ? 1 : value * factorial(value-1);
+    }
+
+    let discount;
+    function setDiscount(value) {
+      if(typeof value === 'number') {
+        discount = value;
+      }
+      discount = 0;
+    }
+
+    const button = document.querySelector(".button");
+    const container = document.querySelector(".container");
+
+    button.onclick = addChild;
+
+    function addChild() {
+      const div = document.createElement("div");
+      div.classList.add("child");
+      
+      div.style.backgroundColor = getRandomColor();
+      
+      container.appendChild(div);
+    }
+
+    function getRandomColor() {
+      const color = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+      return color;
+    }
+
+    function random(maxValue) {
+      return Math.round(Math.random() * maxValue);
+    }
+
+    const log = (text) => console.log(text);
+  </script>
+</body>
+</html>

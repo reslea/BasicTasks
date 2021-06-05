@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Как кодить на HTML</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <label for="item">bla-bla</label>
+    <input id="item" type="checkbox" hidden>
+    <section class="store">
+      <article class="store-item">
+        <div class="store-item__img">
+          <img src="https://gifty.in.ua/public/cache/images/2/0/0/5/6/e45c88cab5fe5b7cb1e5819c65f86a15_900_700.jpg">
+        </div>
+        <div class="store-item__title">Чашка</div>
+        <div class="store-item__price">
+          <span>249</span> грн.
+        </div>        
+        <div class="store-item__add">
+          <button>Add</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="products">
+    </section>
+    <span>
+      <b>Итого: </b><span id="sum">0</span>
+    </span>
+  </div>
+
+  <script>
+
+
+    const productItems = [{
+      title: "Чашка",
+      price: 249.0,
+      image: "https://gifty.in.ua/public/cache/images/2/0/0/5/6/e45c88cab5fe5b7cb1e5819c65f86a15_900_700.jpg",
+    },{
+      title: "Футболка",
+      price: 100,
+      image: "https://img.loveandlive.ua/r/wU4a_LUWON4/fit/640/640/ce/1/plain/images/products/1/5689/356972089/MNK__ZZ3-04314M.00P-20_.jpg",
+    }];
+    
+    fillProducts(productItems);
+
+    const container = document.querySelector(".products");
+    const sum = document.querySelector("#sum");
+
+    function fillProducts(productItems) {
+
+    }
+
+    function fillBasket(productItems) {
+      if(!productItems) return;
+      
+      for (productItem of productItems) {
+        const article = createProductArticle(productItem);
+        
+        const countInput = article.querySelector(".product-count input");
+        countInput.addEventListener('change', onProductPriceChanges);
+
+        const deleteButton = article.querySelector(".product-delete button");
+        deleteButton.addEventListener('click', function() {
+          container.removeChild(article);
+        });
+
+        container.appendChild(article);
+      }
+    }
+
+    function createProductArticle(productItem) {      
+      const article = document.createElement("article");
+        article.classList.add("product");
+
+        article.innerHTML = `
+        <div class="product-image">
+          <img src="${productItem.image}" alt="">
+        </div>
+        <div class="product-title">${productItem.title}</div>
+        <div class="product-price">
+          <span>${productItem.price}</span> грн.
+        </div>
+        <div class="product-count">
+          <input type="number" min="0">
+        </div>
+        <div class="product-delete">
+          <button>X</button>
+        </div>`;
+
+        return article;
+    }
+
+    function onProductPriceChanges() {
+      const products = document.querySelectorAll(".product");
+
+      let totalPrice = 0;
+      for(product of products) {
+        const price = parseFloat(product.querySelector(".product-price span").innerText);
+
+        const productCountInput = product.querySelector(".product-count input");
+        const inputValue = productCountInput.value;
+
+        totalPrice += inputValue * price;
+      }
+
+      sum.innerText = totalPrice;
+    }
+  </script>
+</body>
+</html>

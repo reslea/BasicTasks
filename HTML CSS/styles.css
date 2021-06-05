@@ -212,3 +212,76 @@ tbody tr:nth-child(odd) {
   grid-row-start: 1;
   grid-row-end: 3;
 } */
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.product {
+  display: flex;
+  width: 500px;
+  align-items: center;
+}
+
+.product-image {
+  width: 40%;
+  height: 100%;
+}
+
+.product-image img {
+  width: 100%;
+}
+
+.product-title,
+.product-price,
+.product-count,
+.product-delete {
+  width: 15%;
+}
+
+.product-count input {
+  width: 100%;
+}
+.product-delete {
+  text-align: center;
+}
+
+.store-item {
+  display: grid;
+
+  width: 300px;
+
+  grid-template-areas: 
+   "img img"
+   "title price"
+   "addBtn addBtn"
+}
+
+.store-item > * {
+  width: 100%;
+}
+
+.store-item__img {
+  grid-area: img;
+}
+
+.store-item__title {  
+  grid-area: title;
+}
+
+.store-item__price {
+  grid-area: price;
+}
+
+.store-item__add {
+  grid-area: addBtn;
+}
+
+.store-item__img img {
+  width: 100%;
+}
+
+input#item:checked ~ .store {
+  color: red;
+}
