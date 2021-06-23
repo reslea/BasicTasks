@@ -20,60 +20,62 @@
 <body>
   <button class="button">Add Child</button>
   <div class="container">
-    <div class="child"></div>
   </div>
   <script>
     // console.log(factorial(5));
 
     // var x = 15;
 
-    const arr = ["1", "2", "banana"];
-    arr.push("3");
+    // const arr = ["1", "2", "banana"];
+    // arr.push("3");
 
-    const numbers = arr
-      .map(x => parseInt(x))
-      .filter(x => !Number.isNaN(x));
+    // const numbers = arr
+    //   .map(x => parseInt(x))
+    //   .filter(x => !Number.isNaN(x));
     
-    for(let i = 0; i < numbers.length; i++) {
-      console.log(numbers[i]);
-    }
+    // for(let i = 0; i < numbers.length; i++) {
+    //   console.log(numbers[i]);
+    // }
 
-    function factorial(value) {
-      return value < 2 ? 1 : value * factorial(value-1);
-    }
+    // function factorial(value) {
+    //   return value < 2 ? 1 : value * factorial(value-1);
+    // }
 
-    let discount;
-    function setDiscount(value) {
-      if(typeof value === 'number') {
-        discount = value;
-      }
-      discount = 0;
-    }
+    // let discount;
+    // function setDiscount(value) {
+    //   if(typeof value === 'number') {
+    //     discount = value;
+    //   }
+    //   discount = 0;
+    // }
 
-    const button = document.querySelector(".button");
+    // const button = document.querySelector(".button");
     const container = document.querySelector(".container");
 
-    button.onclick = addChild;
+    // button.onclick = addChild;
 
-    function addChild() {
+    const massiv = [1,2,3,4];
+    massiv.forEach(n => addChild(n));
+
+    function addChild(n) {
       const div = document.createElement("div");
       div.classList.add("child");
-      
-      div.style.backgroundColor = getRandomColor();
+      div.innerHTML = n;
       
       container.appendChild(div);
     }
+    // div.style.backgroundColor = getRandomColor();
 
-    function getRandomColor() {
-      const color = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
-      return color;
-    }
+    // function getRandomColor() {
+    //   const color = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+    //   return color;
+    // }
 
-    function random(maxValue) {
-      return Math.round(Math.random() * maxValue);
-    }
+    // function random(maxValue) {
+    //   return Math.round(Math.random() * maxValue);
+    // }
 
-    const log = (text) => console.log(text);
+    // const log = (text) => console.log(text);
   </script>
 </body>
 </html>

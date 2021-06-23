@@ -80,5 +80,12 @@
 }
 
 .store-item__img img {
-  width: 100%;
+  object-fit: scale-down;
+}
+
+.products .spinner.hidden {
+  display: none;
+}
+.products .spinner {
+  display: block;
 }

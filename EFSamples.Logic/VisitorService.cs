@@ -23,5 +23,10 @@ namespace EFSamples.Logic
         {
             return _context.Visitors.Where(_ => _.TakenBooks.Any()).ToList();
         }
+
+        public IEnumerable<Visitor> GetVisitorsByName(string searchTerm)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
