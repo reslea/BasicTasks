@@ -1,7 +1,7 @@
 // import { productItems } from "./productItems.js";
 // import { addToBasket } from "./basket.js";
 
-const store = document.querySelector('.store');
+const store = document.querySelector('.store .row');
 const spinner = document.querySelector('.products .spinner');
 
 const productsUrl = 'https://localhost:5001/api/products';
@@ -32,17 +32,21 @@ fetch(productsUrl)
 
 function createStoreItem(productItem) {
   const productArticle = document.createElement('article');
-  productArticle.classList.add('store-item');
+  productArticle.classList.add('card');
+  productArticle.classList.add('col-md-4');
+  productArticle.classList.add('col-lg-3');
+  productArticle.classList.add('col-xl-2');
+
   productArticle.attributes
 
   productArticle.innerHTML = `
-    <div class="store-item__img">
+    <div class="card-img-top">
       <img src="${productItem.image}">
     </div>
-    <div class="store-item__title">${productItem.title}</div>
-    <div class="store-item__price">${productItem.price} грн.</div>
-    <div class="store-item__add">
-      <button>Add</button>
+    <div class="card-body">
+      <h5 class="card-title">${productItem.title}</h5>
+      <p class="card-text">${productItem.price} грн.</p>
+      <button class="btn btn-primary">Add</button>
     </div>`;
 
     // const addButton = productArticle.querySelector('.store-item__add button');
