@@ -11,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Auth.Data;
 
 namespace Auth.Api.Controllers
 {
@@ -18,27 +19,37 @@ namespace Auth.Api.Controllers
     [ApiController]
     public class AuthTokenController : ControllerBase
     {
-        private readonly IAuthService authService;
-        private readonly IConfiguration configuration;
-        private const string authScheme = JwtBearerDefaults.AuthenticationScheme;
+        private readonly IAuthService _authService;
+        private readonly IConfiguration _configuration;
 
         public AuthTokenController(IAuthService authService, IConfiguration configuration)
         {
-            this.authService = authService;
-            this.configuration = configuration;
+            _authService = authService;
+            _configuration = configuration;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
+        public IActionResult Register(RegistrationModel model)
+        {
+            User user = _authService.Register(model, "Usual");
+
+            var claims = _authService.CreateClaims(user);
+            string encodedJwt = _authService.CreateJwt(claims, _configuration["SigningKey"]);
+
+            return Ok(new { Token = encodedJwt });
+        }
+
+        [HttpPost("login")]
         public IActionResult Login(LoginModel model)
         {
-            var user = authService.Authenticate(model);
+            var user = _authService.Authenticate(model);
             if (user is null)
             {
                 return Unauthorized();
             }
 
-            var claims = authService.CreateClaims(user);
-            string encodedJwt = authService.CreateJwt(claims, configuration["SigningKey"]);
+            var claims = _authService.CreateClaims(user);
+            string encodedJwt = _authService.CreateJwt(claims, _configuration["SigningKey"]);
 
             return Ok(new { Token = encodedJwt });
         }

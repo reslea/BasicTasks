@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auth.Api.Auth;
+using Auth.Api.Models;
+using Auth.Data;
 
 namespace Auth.Api.Controllers
 {
@@ -20,7 +23,14 @@ namespace Auth.Api.Controllers
             {
                 return Ok(userIdentity.Name);
             }
-            else return Unauthorized();
+            return Unauthorized();
+        }
+
+        [HttpGet("extended")]
+        [RequirePermission(PermissionType.AccessExtended)]
+        public IActionResult GetExtended()
+        {
+            return Ok();
         }
     }
 }
