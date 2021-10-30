@@ -49,7 +49,8 @@ namespace Auth.Api
             var usualClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, model.Id.ToString(), ClaimValueTypes.Integer),
-                new Claim(ClaimTypes.Name, model.Username)
+                new Claim(ClaimTypes.Name, model.Username),
+                new Claim(ClaimTypes.Role, model.Roles.FirstOrDefault()?.Title),
             };
 
             var permissions = model.Roles
@@ -75,7 +76,7 @@ namespace Auth.Api
 
             var jwt = new JwtSecurityToken(
                 notBefore: now,
-                expires: now.AddDays(365),
+                expires: now.AddMinutes(1),
                 claims: claims,
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(

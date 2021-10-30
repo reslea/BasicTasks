@@ -43,16 +43,14 @@ namespace Auth.Api
 
             services.AddSingleton<RNGCryptoServiceProvider>();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddCookie(options => 
                 {
                     options.Cookie.Name = "Auth_Check";
 
                     options.ExpireTimeSpan = TimeSpan.FromDays(365);
                     options.SlidingExpiration = true;
-                });
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                })
                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
