@@ -12,7 +12,7 @@ namespace TestWebApi.Controllers
     public class BookController : ControllerBase
     {
         private static int _idCounter = 1;
-        private static readonly List<Book> _books = new List<Book>();
+        private static readonly List<Book> _books = new();
 
         [HttpGet]
         public IEnumerable<BookModel> GetBooks()
@@ -34,7 +34,6 @@ namespace TestWebApi.Controllers
                 Id = _idCounter++,
                 Title = model.Title,
                 Author = model.Author,
-                PagesCount = model.PagesCount
             });
         }
 

@@ -15,94 +15,93 @@ using Auth.Data;
 using Auth.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Auth.Api
+namespace Auth.Api;
+
+public class Startup
 {
-    public class Startup
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
+        Configuration = configuration;
+    }
+
+    public IConfiguration Configuration { get; }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllers();
+
+        services.AddSwaggerGen(c =>
         {
-            Configuration = configuration;
-        }
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Auth.Api", Version = "v1" });
+        });
 
-        public IConfiguration Configuration { get; }
+        services.AddScoped<IAuthService, AuthService>();
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
 
-            services.AddSwaggerGen(c =>
+        services.AddSingleton<RNGCryptoServiceProvider>();
+
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddCookie(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Auth.Api", Version = "v1" });
-            });
+                options.Cookie.Name = "Auth_Check";
 
-            services.AddScoped<IAuthService, AuthService>();
-
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IRoleRepository, RoleRepository>();
-
-            services.AddSingleton<RNGCryptoServiceProvider>();
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddCookie(options => 
+                options.ExpireTimeSpan = TimeSpan.FromDays(365);
+                options.SlidingExpiration = true;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    options.Cookie.Name = "Auth_Check";
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(
+                            Configuration["SigningKey"])),
 
-                    options.ExpireTimeSpan = TimeSpan.FromDays(365);
-                    options.SlidingExpiration = true;
-                })
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(
-                                Configuration["SigningKey"])),
-
-                        ValidateIssuerSigningKey = true,
-                        ValidateLifetime = true,
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
-                });
-
-            services.AddCors(
-                options => options.AddPolicy("devCors", opts => opts
-                .AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod()));
-
-            services.AddDbContext<AuthDbContext>(options =>
-            {
-                var connectionString = Configuration.GetConnectionString("AuthDb");
-                options.UseSqlServer(connectionString);
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        services.AddCors(
+            options => options.AddPolicy("devCors", opts => opts
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod()));
+
+        services.AddDbContext<AuthDbContext>(options =>
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth.Api v1"));
+            var connectionString = Configuration.GetConnectionString("AuthDb");
+            options.UseSqlServer(connectionString);
+        });
+    }
 
-                app.UseCors("devCors");
-            }
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth.Api v1"));
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseCors("devCors");
         }
+
+        app.UseHttpsRedirection();
+
+        app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
     }
 }
