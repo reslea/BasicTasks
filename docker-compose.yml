@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  consumer:
+    image: resleas/basic-consumer
+    restart: on-failure
+    depends_on:
+      - rabbit
+  producer:
+    image: resleas/basic-producer
+    restart: on-failure
+    depends_on:
+      - rabbit
+  rabbit:
+    image: rabbitmq:3.9-management
+    ports: 
+      - "15672:15672"
+      - "5672:5672"

@@ -2,7 +2,7 @@
 using RabbitMQ.Client;
 using System.Text;
 
-var factory = new ConnectionFactory() { HostName = "localhost" };
+var factory = new ConnectionFactory() { HostName = "rabbit" };
 
 using var connection = factory.CreateConnection();
 

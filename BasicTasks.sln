@@ -89,6 +89,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Data", "Store.Data\Store.Data.csproj", "{9A812BD2-14FE-487B-B2F0-C804EA4C0B97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{EA09E1F7-BE3C-4FEA-9567-B5495125C1CA}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{B76D79E0-6E02-46E9-93DC-B901AFBFD492}"
 EndProject
@@ -100,13 +103,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLevelStatements", "TopLe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{8FEA852F-8D8F-4D4F-B024-7E6F009D29A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicProducer", "BasicProducer\BasicProducer.csproj", "{2F60E9C1-E9CA-4B9B-8455-C20422903010}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicProducer", "BasicProducer\BasicProducer.csproj", "{2F60E9C1-E9CA-4B9B-8455-C20422903010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicConsumer", "BasicConsumer\BasicConsumer.csproj", "{12315661-9C2C-4E10-A08D-3FA4DCE58712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicConsumer", "BasicConsumer\BasicConsumer.csproj", "{12315661-9C2C-4E10-A08D-3FA4DCE58712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureApi", "PictureApi\PictureApi.csproj", "{BE86BFA7-32FA-4402-B8C5-5F9A6382EDA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PictureApi", "PictureApi\PictureApi.csproj", "{BE86BFA7-32FA-4402-B8C5-5F9A6382EDA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureConsumer", "PictureConsumer\PictureConsumer.csproj", "{D183356B-4105-4381-A296-9E517303D1C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PictureConsumer", "PictureConsumer\PictureConsumer.csproj", "{D183356B-4105-4381-A296-9E517303D1C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
